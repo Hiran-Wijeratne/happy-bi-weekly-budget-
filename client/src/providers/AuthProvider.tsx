@@ -16,6 +16,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Ping backend immediately so Render free tier wakes up before queries fire
+    const base = (process.env.NEXT_PUBLIC_API_URL ?? '').replace('/api/v1', '');
+    if (base) fetch(`${base}/health`).catch(() => {});
+
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
