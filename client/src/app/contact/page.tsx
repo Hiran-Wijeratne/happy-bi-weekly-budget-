@@ -23,7 +23,8 @@ export default function ContactPage() {
     setStatus('sending');
     setErrorMsg('');
     try {
-      const res = await fetch('/api/feedback/contact', {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1';
+      const res = await fetch(`${apiBase}/feedback/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
