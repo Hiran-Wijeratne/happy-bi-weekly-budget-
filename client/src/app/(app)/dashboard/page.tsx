@@ -308,7 +308,7 @@ export default function DashboardPage() {
       </header>
 
       {/* ── MAIN ───────────────────────────────────────────────── */}
-      <main className="px-4 sm:px-6" style={{ maxWidth: 960, margin: '0 auto', paddingTop: 40, paddingBottom: 100 }}>
+      <main className="px-4 sm:px-6" style={{ maxWidth: 960, margin: '0 auto', paddingTop: 40, paddingBottom: 48 }}>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <Appear><section style={{ marginBottom: 80 }}>
