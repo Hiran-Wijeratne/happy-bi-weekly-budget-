@@ -308,11 +308,11 @@ export default function DashboardPage() {
       </header>
 
       {/* ── MAIN ───────────────────────────────────────────────── */}
-      <main style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px 100px' }}>
+      <main className="px-4 sm:px-6" style={{ maxWidth: 960, margin: '0 auto', paddingTop: 40, paddingBottom: 100 }}>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <Appear><section style={{ marginBottom: 80 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'center' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
 
             {/* Left */}
             <div>
@@ -358,17 +358,17 @@ export default function DashboardPage() {
               )}
 
               {/* 3 stat chips */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {[
                   { label: 'INCOME',   value: formatCurrency(periodIncome), sub: `+0% vs last`, color: C.green },
                   { label: 'SPENDING', value: formatCurrency(periodSpent),  sub: periodIncome > 0 ? `${Math.round((periodSpent/periodIncome)*100)}% of income` : '—', color: C.pink },
                   { label: 'SAVED',    value: formatCurrency(Math.max(0, periodNet)), sub: `${periodRemPct}% of income`, color: C.green },
                 ].map(st => (
-                  <Card key={st.label} style={{ padding: '18px 20px' }}>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: C.muted, letterSpacing: '0.14em', marginBottom: 8 }}>{st.label}</p>
-                    <p style={{ fontSize: 22, fontWeight: 700, color: C.dark, marginBottom: 4 }}>{st.value}</p>
-                    <p style={{ fontSize: 11, color: st.color, display: 'flex', alignItems: 'center', gap: 3 }}>
-                      <span>↗</span>{st.sub}
+                  <Card key={st.label} style={{ padding: '12px 14px' }}>
+                    <p style={{ fontSize: 9, fontWeight: 700, color: C.muted, letterSpacing: '0.10em', marginBottom: 6 }}>{st.label}</p>
+                    <p className="text-base sm:text-xl" style={{ fontWeight: 700, color: C.dark, marginBottom: 3 }}>{st.value}</p>
+                    <p style={{ fontSize: 10, color: st.color, display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <span>↗</span><span className="truncate">{st.sub}</span>
                     </p>
                   </Card>
                 ))}
@@ -376,9 +376,9 @@ export default function DashboardPage() {
             </div>
 
             {/* Right — jar + sub-stats */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+            <div className="flex flex-col items-center gap-5 lg:order-none -order-1">
               <MoneyJar remainingPct={periodRemPct} net={periodNet} />
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, width: '100%', minWidth: 260 }}>
+              <div className="grid grid-cols-3 gap-2 w-full" style={{ minWidth: 220 }}>
                 {[
                   { label: 'FILLED',          value: `${periodRemPct}%` },
                   { label: 'DAYS LEFT',        value: `${daysLeft}` },
@@ -401,7 +401,7 @@ export default function DashboardPage() {
             Your month at a glance
           </SectionHeading>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 20 }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             {[
               { label: 'PER PAYCHECK',     value: formatCurrency(biweeklyHH),    sub: 'Bi-weekly · net' },
               { label: 'MONTHLY EQUIV.',   value: formatCurrency(monthlyIncome),  sub: '2.17 paychecks' },
@@ -417,7 +417,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Alert cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {threePaycheckPeriods.length > 0 && (
               <div style={{ background: '#edf6f0', borderRadius: 12, padding: '18px 20px', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                 <span style={{ fontSize: 20, marginTop: 1 }}>✨</span>
@@ -465,7 +465,7 @@ export default function DashboardPage() {
               Spending by category
             </SectionHeading>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 24, alignItems: 'start' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 items-start">
 
               {/* Category list */}
               <Card style={{ padding: '8px 0' }}>
@@ -541,9 +541,9 @@ export default function DashboardPage() {
                     </p>
                   </>
                 )}
-                <button style={{ width: '100%', padding: '12px', background: C.green, color: '#fff', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
+                <a href="/expenses" style={{ display: 'block', width: '100%', padding: '12px', background: C.green, color: '#fff', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer', textAlign: 'center', textDecoration: 'none' }}>
                   View all transactions →
-                </button>
+                </a>
               </Card>
             </div>
           </section></Appear>
@@ -556,7 +556,7 @@ export default function DashboardPage() {
             Visual breakdown
           </SectionHeading>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card style={{ padding: '24px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
                 <div>
@@ -598,7 +598,7 @@ export default function DashboardPage() {
           </SectionHeading>
 
           {/* Two charts */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card style={{ padding: '24px' }}>
               <h3 style={{ fontSize: 16, fontWeight: 600, color: C.dark, marginBottom: 2 }}>Spending over time</h3>
               <p style={{ fontSize: 12, color: C.muted, marginBottom: 16 }}>Cumulative this year</p>
@@ -619,7 +619,7 @@ export default function DashboardPage() {
           </div>
 
           {/* 4 projection cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {[
               { label: 'PROJECTED SAVINGS',  value: formatCurrency(projSavings),  sub: `+${formatCurrency(Math.max(0, projSavings - net))} from today`, color: C.green },
               { label: 'PROJECTED SPENDING', value: formatCurrency(projSpend),    sub: `Avg ${formatCurrency(Math.round(projSpend / 12))} / mo`,       color: C.pink  },
@@ -782,7 +782,7 @@ export default function DashboardPage() {
 
             <Card>
               {/* Summary row */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderBottom: `1px solid ${C.border}` }}>
+              <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${C.border}` }}>
                 {[
                   { label: 'TOTAL BALANCE', value: formatCurrency(totalDebt) },
                   { label: 'PAID THIS YEAR', value: formatCurrency(totalPaid) },
