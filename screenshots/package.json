@@ -1,0 +1,13 @@
+{
+  "name": "budget-screenshots",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:browsers": "npx playwright install chromium",
+    "screenshot": "node take-screenshots.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}
