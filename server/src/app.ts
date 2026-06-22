@@ -8,8 +8,18 @@ export function createApp() {
   const app = express();
 
   app.use(helmet());
+  const allowedOrigins = (process.env.CLIENT_URL ?? 'http://localhost:3000')
+    .split(',')
+    .map(s => s.trim());
+
   app.use(cors({
-    origin:      process.env.CLIENT_URL ?? 'http://localhost:3000',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS: origin ${origin} not allowed`));
+      }
+    },
     credentials: true,
   }));
   app.use(express.json({ limit: '1mb' }));
