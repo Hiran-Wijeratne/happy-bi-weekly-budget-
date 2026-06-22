@@ -36,7 +36,7 @@ export default function LandingPage() {
           <Link href="/login" className="text-sm lg:text-base font-medium text-gray-500 hover:text-gray-800 transition-colors">Sign in</Link>
           <Link
             href="/signup"
-            className="text-sm lg:text-base font-semibold text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0"
+            className="hidden sm:inline-flex text-sm lg:text-base font-semibold text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0"
             style={{ background: 'linear-gradient(135deg, #3db86a 0%, #2e7d52 55%, #1f6040 100%)', boxShadow: '0 2px 10px rgba(46,125,82,0.28)' }}
           >
             Get started free
